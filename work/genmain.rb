@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
-
 require 'erb'
-
 
 LIBDIR = "../../lib/src/main/java/jp/ne/sakura/uhideyuki/jatcoder"
 
@@ -56,8 +54,3 @@ libs.each{|s|
     puts str
   end
 }
-
-
-  
-
-  
