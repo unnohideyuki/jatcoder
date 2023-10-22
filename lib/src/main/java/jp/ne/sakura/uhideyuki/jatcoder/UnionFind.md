@@ -2,14 +2,14 @@
 
 これは AC Library の DSU を移植したものです。
 
-無向グラフに対して、以下をならし $O(\alpha(n))$ で処理することができる。
+無向グラフに対して、以下をならし $O(\alpha(n))$ で処理することが出来ます。
 
 - 辺の追加
 - ２頂点が連結かどうかの判定
 
 ## コンストラクタ
 
-```agsl
+```java
 UnionFind uf = new UnionFind(int n)
 ```
 
@@ -17,7 +17,7 @@ n 頂点 0 辺の無向グラフを作ります。
 
 ### 制約
 
-- $0 \le n \le 10^8
+- $0 \le n \le 10^8$
 
 ### 計算量
 
@@ -25,8 +25,8 @@ n 頂点 0 辺の無向グラフを作ります。
 
 ## merge
 
-```agsl
-int d.merge(int a, int b)
+```java
+int uf.merge(int a, int b)
 ```
 
 辺 (a, b) を追加し、これを含む連結成分の代表元を返します。
@@ -39,6 +39,69 @@ int d.merge(int a, int b)
 ### 計算量
 
 - ならし $O(\alpha(n))$
+
+## same
+
+```java
+boolean uf.same(int a, int b)
+```
+
+頂点 a, b が連結かどうかを返します。
+
+### 制約
+
+- $0 \le a < n$
+- $0 \le b < n$
+
+### 計算量
+
+- ならし $O(\alpha(n))$
+
+## leader
+
+```java
+int uf.leader(int a)
+```
+
+頂点 a の属する連結成分の代表元を返します。
+
+### 制約
+
+- $0 \le a < n$
+
+### 計算量
+
+- ならし $O(\alpha(n))$
+
+## size
+
+```java
+int uf.size(int a)
+```
+
+頂点 a の属する連結成分のサイズを返します。
+
+### 制約
+
+- $0 \le a < n$
+
+### 計算量
+
+- ならし $O(\alpha(n))$
+
+## groups
+
+```java
+ArrayList<ArrayList<Integer>> uf.groups()
+```
+
+グラフの連結成分のリストを返します。
+
+返り値は「各連結成分に含まれる頂点番号のリスト」のリストです。いずれも格納される順序は未定義です。
+
+### 計算量
+
+- ならし $O(n)$
 
 ### 使用例
 
