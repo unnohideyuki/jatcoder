@@ -24,6 +24,18 @@ public class UnionFindTest {
     }
 
     @Test
+    void mergeTwise(){
+        final int n = 2;
+        final UnionFind uf = new UnionFind(n);
+        assertEquals(uf.leader(0), uf.merge(0, 1));
+        assertTrue(uf.same(0, 1));
+        assertEquals(2, uf.size(0));
+        assertEquals(uf.leader(0), uf.merge(0, 1));
+        assertTrue(uf.same(0, 1));
+        assertEquals(2, uf.size(0));
+    }
+
+    @Test
     void groups1(){
         final int n = 5;
         final UnionFind uf = new UnionFind(n);
