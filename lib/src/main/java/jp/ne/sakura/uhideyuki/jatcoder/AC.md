@@ -13,12 +13,12 @@ int AC.gcd(int a, int b)
 ## iota
 
 ```
-    void iota(List<Integer> list, Integer value, int size)
-    void iota(List<Long> list, Long value, int size)
-    void iota(int[] arr, int value)
-    void iota(long[] arr, long value)
-    void iota(Integer[] arr, Integer value)
-    void iota(Long[] arr, Long value)
+void AC.iota(List<Integer> list, Integer value, int size)
+void AC.iota(List<Long> list, Long value, int size)
+void AC.iota(int[] arr, int value)
+void AC.iota(long[] arr, long value)
+void AC.iota(Integer[] arr, Integer value)
+void AC.iota(Long[] arr, Long value)
 ```
 
 指定された値から始まる整数列を生成します。
@@ -45,7 +45,7 @@ list において、指定された要素以上の値が現れる最初の位置
 ## next_permutation
 
 ```
-boolean next_permutation(List<<T extends Comparable<? super T>>> list)
+boolean AC.next_permutation(List<<T extends Comparable<? super T>>> list)
 ```
 
 与えられた時点のリストを起点の順列として、辞書順のよる次の順列を生成します。
