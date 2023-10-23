@@ -26,7 +26,7 @@ instr.gsub(/^package.*$/, "")
 
 libs = []
 LIB_CLASSES.each{|s|
-  re = Regexp.new("#{s}[\.\:\(]")
+  re = Regexp.new("#{s}\s*[\.\:\(\<]")
   if re =~ instr
     libs.append(s)
   end
