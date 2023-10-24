@@ -8,8 +8,8 @@ class ModintTest {
     @Test
     void modIntAdd(){
         final int mod = 13;
-        Modint.set_mod(mod);
-        Modint.set_prime(true); // 13 is a prime number
+        Modint.setMod(mod);
+        Modint.setPrime(true); // 13 is a prime number
 
         for (int x = 0; x < 20; x++){
             for (int y = 0; y < 20; y++){
@@ -37,8 +37,8 @@ class ModintTest {
     @Test
     void modIntSub(){
         final int mod = 13;
-        Modint.set_mod(mod);
-        Modint.set_prime(true); // 13 is a prime number
+        Modint.setMod(mod);
+        Modint.setPrime(true); // 13 is a prime number
 
         for (int x = 0; x < 20; x++){
             for (int y = 0; y < 100; y++){
@@ -66,8 +66,8 @@ class ModintTest {
     @Test
     void modIntMul(){
         final int mod = 13;
-        Modint.set_mod(mod);
-        Modint.set_prime(true); // 13 is a prime number
+        Modint.setMod(mod);
+        Modint.setPrime(true); // 13 is a prime number
 
         for (int x = 0; x < 20; x++){
             for (int y = 0; y < 20; y++){
@@ -95,8 +95,8 @@ class ModintTest {
     @Test
     void modIntDiv(){
         final int mod = 13;
-        Modint.set_mod(mod);
-        Modint.set_prime(true); // 13 is a prime number
+        Modint.setMod(mod);
+        Modint.setPrime(true); // 13 is a prime number
 
         for (int x = 0; x < 20; x++){
             for (int y = 0; y < 20; y++){
@@ -129,7 +129,7 @@ class ModintTest {
     void modintMod(){
         final int mod = 13;
         final Modint x = new Modint();
-        Modint.set_mod(mod);
+        Modint.setMod(mod);
         assertEquals(mod, x.mod());
     }
 
@@ -143,7 +143,7 @@ class ModintTest {
     @Test
     void modintInv(){
         final int mod = 13;
-        Modint.set_mod(mod);
+        Modint.setMod(mod);
         for (int i = 1; i < mod; i++){
             final Modint x = new Modint(i);
             final Modint y = x.inv();
@@ -171,7 +171,7 @@ class ModintTest {
             x *= a;
             x %= mod;
         }
-        Modint.set_mod(13);
+        Modint.setMod(13);
         final Modint y = new Modint((int) a).pow(p);
         assertEquals(x, y.val());
     }
