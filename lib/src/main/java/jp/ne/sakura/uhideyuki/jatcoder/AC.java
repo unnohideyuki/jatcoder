@@ -18,10 +18,10 @@ public class AC {
         return (int) lcm((long) a, (long) b);
     }
 
-    public static <T extends Comparable<? super T>> int lower_bound(final List<T> list, final T key){
+    public static <T extends Comparable<? super T>> int lowerBound(final List<T> list, final T key){
         return ~Collections.binarySearch(list, key, (x, y) -> x.compareTo(y) >= 0 ? 1 : -1);
     }
-    public static <T extends Comparable<? super T>> int upper_bound(final List<T> list, final T key){
+    public static <T extends Comparable<? super T>> int upperBound(final List<T> list, final T key){
         return ~Collections.binarySearch(list, key, (x, y) -> x.compareTo(y) > 0 ? 1 : -1);
     }
 
@@ -44,8 +44,8 @@ public class AC {
         for (int i = 0; i < arr.length ; i++) arr[i] = value++;
     }
 
-    // next_permutaion is based on https://tomerun.hatenadiary.org/entry/20081203/1228321480
-    public static <T extends Comparable<? super T>> boolean next_permutation(final List<T> l) {
+    // nextPermutaion is based on https://tomerun.hatenadiary.org/entry/20081203/1228321480
+    public static <T extends Comparable<? super T>> boolean nextPermutation(final List<T> l) {
         int size = l.size();
         for (int i = size - 1; i > 0; --i) {
             if (l.get(i - 1).compareTo(l.get(i)) < 0) {

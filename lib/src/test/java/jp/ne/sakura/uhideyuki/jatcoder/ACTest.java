@@ -1,8 +1,9 @@
 package jp.ne.sakura.uhideyuki.jatcoder;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+
 import java.util.*;
+import org.junit.jupiter.api.Test;
 
 class ACTest {
     @Test
@@ -36,18 +37,18 @@ class ACTest {
     @Test
     void lowerBound(){
         final ArrayList<Integer> list = new ArrayList<>(List.of(new Integer[]{1, 2, 2, 3, 4, 4, 4, 6, 7}));
-        final int result = AC.lower_bound(list, 4);
+        final int result = AC.lowerBound(list, 4);
         assertEquals(4, result);
-        final int result2 = AC.lower_bound(list, 1000000000);
+        final int result2 = AC.lowerBound(list, 1000000000);
         assertEquals(list.size(), result2);
     }
 
     @Test
     void upperBound(){
         final ArrayList<Integer> list = new ArrayList<>(List.of(new Integer[]{1, 2, 2, 3, 4, 4, 4, 6, 7}));
-        final int result = AC.upper_bound(list, 4);
+        final int result = AC.upperBound(list, 4);
         assertEquals(7, result);
-        final int result2 = AC.upper_bound(list, 1000000000);
+        final int result2 = AC.upperBound(list, 1000000000);
         assertEquals(list.size(), result2);
     }
 
@@ -119,6 +120,6 @@ class ACTest {
                 assertEquals(expected[i][j], list.get(j));
             }
             i++;
-        } while (AC.next_permutation(list));
+        } while (AC.nextPermutation(list));
     }
 }

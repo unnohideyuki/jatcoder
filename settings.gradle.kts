@@ -12,3 +12,5 @@ plugins {
 
 rootProject.name = "jatcoder"
 include("lib")
+include("work")
+
