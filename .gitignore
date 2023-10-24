@@ -10,3 +10,4 @@ build
 # Ignore intermediate files in work/*/
 work/*/*.class
 work/*/Main.java
+work/*/actual?
