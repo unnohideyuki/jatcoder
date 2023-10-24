@@ -13,7 +13,7 @@ public class ABC323E {
         //
         // Solve
         //
-        Modint.set_mod(998244353);
+        Modint.setMod(998244353);
         // dp[i]: i 秒後に次の曲が始まる確率
         final Modint[] dp = new Modint[X+1];
         for (int i = 1; i <= X; i++) dp[i] = new Modint(0);
