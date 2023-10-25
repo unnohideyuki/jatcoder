@@ -13,14 +13,14 @@ public class ABC323E {
         //
         // Solve
         //
-        Modint.setMod(998244353);
+        Modint.Builder modint = new Modint.Builder(998244353);
         // dp[i]: i 秒後に次の曲が始まる確率
         final Modint[] dp = new Modint[X+1];
-        for (int i = 1; i <= X; i++) dp[i] = new Modint(0);
-        dp[0] = new Modint(1);
+        for (int i = 1; i <= X; i++) dp[i] = modint.build(0);
+        dp[0] = modint.build(1);
 
         // DP
-        final Modint invN = new Modint(N).inv(); // 1/N
+        final Modint invN = modint.build(N).inv(); // 1/N
         for (int tm = 0; tm <= X; tm++){
             for (int i = 0; i < N; i++){
                 if (tm + t[i] <= X){
@@ -30,11 +30,11 @@ public class ABC323E {
         }
 
         // Answer
-        Modint ans = new Modint(0);
+        Modint ans = modint.build(0);
         for (int i = 0; i < t[0]; i++){
             if (X - i < 0) break;
             ans = ans.add(dp[X - i].mul(invN));
         }
-        System.out.println(ans.val());
+        System.out.println(ans.getValue());
     }
 }

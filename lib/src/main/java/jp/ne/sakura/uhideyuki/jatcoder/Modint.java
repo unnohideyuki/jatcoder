@@ -1,64 +1,102 @@
 package jp.ne.sakura.uhideyuki.jatcoder;
 
 public class Modint {
-    static private long modintBase = -1;
-    static private boolean prime = false;
-    static public void setMod(final int m){
-        modintBase = m;
-        // set prime for very typical case
-        if ((m == 998244353) || (m == 1000000007)){
-            prime = true;
+    final private long modintBase;
+    final private boolean prime;
+    private long value = 0;
+
+    public static class Builder {
+        final private long modintBase;
+        final private boolean prime;
+
+        public Builder(final int mod, final boolean prime){
+            this.modintBase = mod;
+            this.prime = prime;
+        }
+
+        public Builder(final int mod){
+            // よく使われる mod に対してのみ prime を設定
+            this(mod, (mod == 998244353) || (mod == 1000000007));
+        }
+
+        public Modint build(){
+            return new Modint(this);
+        }
+
+        public Modint build(final int v){
+            return new Modint(this, v);
         }
     }
 
-    long _v = 0;
-
-    static public void setPrime(final boolean b){
-        prime = b;
+    private Modint(final Builder builder){
+        this.modintBase = builder.modintBase;
+        this.prime = builder.prime;
     }
 
-    public Modint(int x){
-        _v = x % modintBase;
+    private Modint(final Builder builder, final int v){
+        this(builder);
+        setValue(v);
     }
 
-    public Modint(){}
-
-    private static long doAdd(final long a, final long b, final long m){
-        return (a + b) % m;
+    private Modint(final Modint x){
+        this.modintBase = x.modintBase;
+        this.prime = x.prime;
+        this.value = x.value;
     }
 
-    private static long doSub(final long a, final long b, final long m){
-        return ((a - b) % m + m) % m;
+    public Modint setValue(final int v){
+        value = (long) v % modintBase;
+        return this;
     }
 
-    private static long doMul(final long a, final long b, final long m){
-        return a * b % m;
+    private Modint setRaw(final long v){
+        value = v;
+        return this;
     }
 
-    private static long doDiv(final long a, final long b, final long m, final boolean isp){
-        return a * doInv(b, m, isp) % m;
+    public int getValue(){
+        return (int) value;
     }
 
-    private static long doInv(final long a, final long m, final boolean isPrime){
-        if (isPrime){
-            assert a != 0;
-            return doPow(a, m - 2, m);
+    public int mod(){
+        return (int) modintBase;
+    }
+
+    public Modint add(final Modint x){
+        final long m = modintBase;
+        assert m == x.mod();
+        return new Modint(this).setRaw((this.getValue() + x.getValue()) % m);
+    }
+
+    public Modint sub(final Modint x){
+        final long m = modintBase;
+        assert m == x.mod();
+        return new Modint(this)
+                .setRaw((((getValue() - x.getValue()) % m) + m) % m);
+    }
+
+    public Modint mul(final Modint x){
+        final long m = modintBase;
+        assert m == x.mod();
+        return new Modint(this).setRaw(((long) getValue() * x.getValue()) % m);
+    }
+
+    public Modint div(final Modint x){
+        final long m = modintBase;
+        assert m == x.mod();
+        assert prime == x.prime;
+        return new Modint(this).setRaw(((long) getValue() * x.inv().getValue()) % m);
+    }
+    public Modint inv(){
+        final long m = modintBase;
+        if (prime){
+            assert value != 0;
+            return this.pow(m - 2);
         } else {
-            final long[] eg = invGcd(a, m);
+            final long[] eg = invGcd(value, m);
             assert eg[0] == 1;
-            return eg[1];
+            return new Modint(this).setRaw(eg[1]);
         }
-    }
-
-    private static long doPow(long x, long n, final long m){
-        assert n >= 0;
-        long r = 1;
-        while (n > 0){
-            if ((n & 1) != 0) r = doMul(r, x, m);
-            x = doMul(x, x, m);
-            n >>= 1;
-        }
-        return r;
     }
 
     private static long[] invGcd(long a, final long b){
@@ -84,130 +122,15 @@ public class Modint {
         return new long[]{s, m0};
     }
 
-    public long val(){
-        return _v;
-    }
-
-    public Modint raw(final long x){
-        _v = x;
-        return this;
-    }
-
-    public long mod(){
-        return modintBase;
-    }
-
-    public Modint add(final Modint x){
-        Modint r = new Modint();
-        return r.raw(doAdd(this.val(), x.val(), modintBase));
-    }
-
-    public Modint sub(final Modint x){
-        Modint r = new Modint();
-        return r.raw(doSub(this.val(), x.val(), modintBase));
-    }
-
-    public Modint mul(final Modint x){
-        Modint r = new Modint();
-        return r.raw(doMul(this.val(), x.val(), modintBase));
-    }
-
-    public Modint div(final Modint x){
-        Modint r = new Modint();
-        return r.raw(doDiv(this.val(), x.val(), modintBase, prime));
-    }
-
-    public Modint inv(){
-        Modint r = new Modint();
-        return r.raw(doInv(this.val(), modintBase, prime));
-    }
-
     public Modint pow(long n){
-        Modint r = new Modint();
-        return r.raw(doPow(this.val(), n, modintBase));
-    }
-
-    public static class DynamicModint {
-        private long dynamicModintBase = -1;
-        private boolean dynamicPrime = false;
-
-        private long _v = 0;
-        public DynamicModint(int x, int m){
-            setMod(m);
-            _v = x % dynamicModintBase;
+        assert n >= 0;
+        final long m = modintBase;
+        long a = 1, x = value;
+        while (n > 0){
+            if ((n & 1) != 0) a = a * x % m;
+            x = x * x % m;
+            n >>= 1;
         }
-
-        public DynamicModint(){}
-
-        public void setMod(final int m){
-            dynamicModintBase = m;
-            // set prime for very typical case
-            if ((m == 998244353) || (m == 1000000007)){
-                dynamicPrime = true;
-            }
-        }
-
-        public void setPrime(final boolean b){
-            dynamicPrime = b;
-        }
-
-        public boolean getPrime(){
-            return dynamicPrime;
-        }
-
-        public long val(){
-            return _v;
-        }
-
-        public long mod(){
-            return dynamicModintBase;
-        }
-
-        public DynamicModint raw(final long x){
-            _v = x;
-            return this;
-        }
-
-        public DynamicModint add(final DynamicModint x){
-            final DynamicModint r = new DynamicModint();
-            r.setMod((int) this.mod());
-            r.setPrime(this.getPrime());
-            return r.raw(doAdd(this.val(), x.val(), this.mod()));
-        }
-
-        public DynamicModint sub(final DynamicModint x){
-            final DynamicModint r = new DynamicModint();
-            r.setMod((int) this.mod());
-            r.setPrime(this.getPrime());
-            return r.raw(doSub(this.val(), x.val(), this.mod()));
-        }
-
-        public DynamicModint mul(final DynamicModint x){
-            final DynamicModint r = new DynamicModint();
-            r.setMod((int) this.mod());
-            r.setPrime(this.getPrime());
-            return r.raw(doMul(this.val(), x.val(), this.mod()));
-        }
-
-        public DynamicModint div(final DynamicModint x){
-            final DynamicModint r = new DynamicModint();
-            r.setMod((int) this.mod());
-            r.setPrime(this.getPrime());
-            return r.raw(doDiv(this.val(), x.val(), this.mod(), this.getPrime()));
-        }
-
-        public DynamicModint inv(){
-            final DynamicModint r = new DynamicModint();
-            r.setMod((int) this.mod());
-            r.setPrime(this.getPrime());
-            return r.raw(doInv(this.val(), this.mod(), this.getPrime()));
-        }
-
-        public DynamicModint pow(long n){
-            final DynamicModint r = new DynamicModint();
-            r.setMod((int) this.mod());
-            r.setPrime(this.getPrime());
-            return r.raw(doPow(this.val(), n, this.mod()));
-        }
+        return new Modint(this).setRaw(a);
     }
 }
