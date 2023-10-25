@@ -13,12 +13,12 @@
 builder には mod (剰余演算の法) を設定します。
 
 ```console
-(1) Modint.Builder modint = new Modint.Builder(int m);
-(2) Modint.Builder modint = new Modint.Builder(int m, boolean prime);
+(1) Modint.Builder modint = new Modint.Builder(int mod);
+(2) Modint.Builder modint = new Modint.Builder(int mod, boolean prime);
 ```
 
 `prime` は、mod が素数である時 `true`、そうでないときには `false`  を設定してください。
-この値によって、除算や逆元の計算に用いられる値が変わります。
+この値によって、除算や逆元の計算に用いられるアルゴリズムが変わります。
 
 mod が素数でないにもかかわらず `prime` を `true` に設定した場合には、
 演算結果は不定となります。
