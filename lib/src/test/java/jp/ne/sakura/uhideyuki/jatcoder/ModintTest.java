@@ -138,4 +138,17 @@ class ModintTest {
         final Modint y = new Modint.Builder(mod).build(a).pow(p);
         assertEquals(x, y.getValue());
     }
+
+    @Test
+    void modintCompare() {
+        final Modint.Builder modint = new Modint.Builder(998244353);
+        for (long x = 0L; x < 10L; x++){
+            Modint a = modint.build((int) x);
+            for (long y = 0L; y < 10L; y++){
+                Modint b = modint.build((int) y);
+                assertEquals(Long.valueOf(x).equals(y), a.equals(b));
+                assertEquals(Long.valueOf(x).compareTo(y), a.compareTo(b));
+            }
+        }
+    }
 }
