@@ -14,8 +14,11 @@ public class Pair<L extends Comparable<L>, R extends Comparable<R>> implements C
             return true;
         if (obj == null)
             return false;
-        final Pair<L, R> p = (Pair<L, R>) obj;
-        return first == p.first && second == p.second;
+        if (obj instanceof Pair) {
+            final Pair<L, R> p = (Pair<L, R>) obj;
+            return first.equals(p.first) && second.equals(p.second);
+        }
+        return super.equals(obj);
     }
 
     @Override

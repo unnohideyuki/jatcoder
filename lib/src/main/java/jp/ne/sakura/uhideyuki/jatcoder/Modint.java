@@ -1,9 +1,33 @@
 package jp.ne.sakura.uhideyuki.jatcoder;
 
-public class Modint {
+public class Modint implements Comparable<Modint> {
     final private long modintBase;
     final private boolean prime;
     private long value = 0;
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public boolean equals(final Object obj){
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (obj instanceof Modint) {
+            final Modint m = (Modint) obj;
+            return value == m.getValue();
+        }
+        return super.equals(obj);
+    }
+
+    @Override
+    public int compareTo(final Modint m){
+        return Long.valueOf(value).compareTo(Long.valueOf(m.getValue()));
+    }
+
+    @Override
+    public int hashCode(){
+        return Long.valueOf(value).hashCode();
+    }
 
     public static class Builder {
         final private long modintBase;
