@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 require 'erb'
+require 'set'
 
 LIBDIR = "../../lib/src/main/java/jp/ne/sakura/uhideyuki/jatcoder"
 
@@ -7,7 +8,7 @@ LIB_CLASSES =
   Dir.glob("#{LIBDIR}/*.java").map{|s| File.basename(s, ".java")}
 
 template = <<'EOS'
-import java.util.*;
+<%= importstr %>
 
 public class Main {
     public static void main(final String[] args){
@@ -17,10 +18,20 @@ public class Main {
 
 EOS
 
+st = Set.new()
+
 ## Read the source from stdin
 
-instr = $stdin.read
-instr.gsub(/^package.*$/, "")
+instr = ""
+# collect imports from input file
+while s = $stdin.gets do
+  unless /^package.*$/ =~ s
+    instr += s
+  end
+  if /^\s*import/ =~ s
+    st.add(s.strip)
+  end         
+end
 
 ## Detect used libraries
 
@@ -31,6 +42,21 @@ LIB_CLASSES.each{|s|
     libs.append(s)
   end
 }
+
+# collect imports from lib
+libs.each{|s|
+  File.open("#{LIBDIR}/#{s}.java") do |f|
+    while s = f.gets do
+      if /^\s*import/ =~ s
+        st.add(s.strip)
+      end         
+    end
+  end
+}
+
+
+importstr = ""
+st.each{|s| importstr += "#{s}\n"}
 
 ## Print Main
 re1 = /^\s*public\s+class\s+(\w+)/
@@ -48,6 +74,12 @@ instr = instr.gsub(re1, "class #{clsname}")
 puts instr
 
 ## Insert libs
+
+#### work around ####
+if (libs.include?("FenwickTree") and (not libs.include?("Modint")))
+  libs.append("Modint")
+end
+
 libs.each{|s|
   File.open("#{LIBDIR}/#{s}.java") do |f|
     str = f.read
