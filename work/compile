@@ -1,4 +1,4 @@
 #!/bin/bash
 f=$1
-../genmain.rb < $f > Main.java
+../genmain.rb $f `../extrdeps.rb $f` > Main.java
 javac Main.java

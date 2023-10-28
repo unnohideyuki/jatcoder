@@ -7,7 +7,9 @@ build
 # Emacs backup
 *~
 
+# Class files
+*.class
+
 # Ignore intermediate files in work/*/
-work/*/*.class
 work/*/Main.java
 work/*/actual?
