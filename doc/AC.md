@@ -3,7 +3,7 @@
 
 ## gcd
 
-```
+```console
 long AC.gcd(long a, long b)
 int AC.gcd(int a, int b)
 ```
@@ -12,7 +12,7 @@ int AC.gcd(int a, int b)
 
 ## iota
 
-```
+```console
 void AC.iota(List<Integer> list, Integer value, int size)
 void AC.iota(List<Long> list, Long value, int size)
 void AC.iota(int[] arr, int value)
@@ -27,7 +27,7 @@ List に対しては `add` で追加される要素の個数を引数 `size` で
 
 ## lcm
 
-```
+```console
 long AC.lcm(long a, long b)
 int AC.lcm(int a, int b)
 ```
@@ -36,25 +36,34 @@ int AC.lcm(int a, int b)
 
 ## lowerBound
 
-```
+```console
 int AC.lowerBound(List<T extends Comparable<? super T>> list, T key)
 ```
 
 list において、指定された要素以上の値が現れる最初の位置のインデックスを求めます。
 
-## nextPermutation
+## nextPermutation 
+### List 版
 
-```
-boolean AC.nextPermutation(List<<T extends Comparable<? super T>>> list)
+```console
+(1) boolean AC.nextPermutation(List<<T extends Comparable<? super T>>> list)
 ```
 
 与えられた時点のリストを起点の順列として、辞書順による次の順列を生成します。
 
 次の順列が存在する場合は `true`、そうでなければ `false` を返します。
 
+### String 版
+
+```console
+(2) String AC.nextPermutation(String s)
+```
+
+String 版では、次の順列が存在する場合にはその文字列を、そうでなければ `null` を返します。
+
 ## upperBound
 
-```
+```console
 int AC.upperBound(List<T extends Comparable<? super T>> list, T key)
 ```
 

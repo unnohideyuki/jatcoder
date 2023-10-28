@@ -122,4 +122,17 @@ class ACTest {
             i++;
         } while (AC.nextPermutation(list));
     }
+
+    @Test
+    void nextPermutaionString(){
+        final String[] expected =
+                new String[]{"012", "021", "102", "120", "201", "210"};
+        final int N = 3;
+        String s = "012";
+        int i = 0;
+        do {
+            assertEquals(expected[i++], s);
+        } while ((s = AC.nextPermutation(s)) != null);
+    }
+
 }
