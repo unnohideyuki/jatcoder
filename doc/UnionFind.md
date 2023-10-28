@@ -9,7 +9,7 @@
 
 ## コンストラクタ
 
-```java
+```console
 UnionFind uf = new UnionFind(int n)
 ```
 
@@ -25,7 +25,7 @@ n 頂点 0 辺の無向グラフを作ります。
 
 ## merge
 
-```java
+```console
 int uf.merge(int a, int b)
 ```
 
@@ -42,7 +42,7 @@ int uf.merge(int a, int b)
 
 ## same
 
-```java
+```console
 boolean uf.same(int a, int b)
 ```
 
@@ -59,7 +59,7 @@ boolean uf.same(int a, int b)
 
 ## leader
 
-```java
+```console
 int uf.leader(int a)
 ```
 
@@ -75,7 +75,7 @@ int uf.leader(int a)
 
 ## size
 
-```java
+```console
 int uf.size(int a)
 ```
 
@@ -91,7 +91,7 @@ int uf.size(int a)
 
 ## groups
 
-```java
+```console
 ArrayList<ArrayList<Integer>> uf.groups()
 ```
 
