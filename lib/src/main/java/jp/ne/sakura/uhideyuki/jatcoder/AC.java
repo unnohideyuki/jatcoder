@@ -1,4 +1,5 @@
 package jp.ne.sakura.uhideyuki.jatcoder;
+import javax.annotation.Nullable;
 import java.util.*;
 public class AC {
     public static long gcd(final long a, final long b){
@@ -44,7 +45,7 @@ public class AC {
         for (int i = 0; i < arr.length ; i++) arr[i] = value++;
     }
 
-    // nextPermutaion is based on https://tomerun.hatenadiary.org/entry/20081203/1228321480
+    // nextPermutation is based on https://tomerun.hatenadiary.org/entry/20081203/1228321480
     public static <T extends Comparable<? super T>> boolean nextPermutation(final List<T> l) {
         int size = l.size();
         for (int i = size - 1; i > 0; --i) {
@@ -64,5 +65,17 @@ public class AC {
         return a.get(m).compareTo(dest) <= 0
                 ? find(dest, a, s, m - 1)
                 : find(dest, a, m, e);
+    }
+
+    @Nullable
+    public static String nextPermutation(final String s){
+        final ArrayList<Character> list = new ArrayList<>();
+        for (int i = 0; i < s.length(); i++) list.add(s.charAt(i));
+        if (nextPermutation(list)){
+            final StringBuilder sb = new StringBuilder();
+            for (Character c : list) sb.append(c);
+            return sb.toString();
+        }
+        return null;
     }
 }
