@@ -11,7 +11,8 @@ template = <<'EOS'
 
 public class Main {
     public static void main(final String[] args){
-        <%= clsname %>.solve();
+      final <%= clsname %> <%= clsname.downcase %> = new <%= clsname %>();
+      <%= clsname.downcase %>.solve();
     }
 }
 

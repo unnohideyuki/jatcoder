@@ -2,7 +2,7 @@ package jp.ne.sakura.uhideyuki.jatcoder;
 import java.util.*;
 
 public class ABC325E {
-    public static void solve(){
+    public void solve(){
         // Input
         Scanner sc = new Scanner(System.in);
         final int N = sc.nextInt();

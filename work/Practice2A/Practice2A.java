@@ -3,7 +3,7 @@ package jp.ne.sakura.uhideyuki.jatcoder;
 import java.util.*;
 
 public class Practice2A {
-    public static void solve(){
+    public void solve(){
         Scanner sc = new Scanner(System.in);
         final int N = sc.nextInt();
         final int Q = sc.nextInt();
