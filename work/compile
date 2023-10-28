@@ -1,4 +1,22 @@
 #!/bin/bash
 f=$1
-../genmain.rb $f `../extrdeps.rb $f` > Main.java
+
+if [ -f Main.java ]; then
+    rm Main.java
+fi
+
+libs=`../extrdeps.rb $f`
+
+if [ $? -ne 0 ]; then
+    echo "extrdeps.rb failed."
+    exit 1
+fi
+
+../genmain.rb $f $libs > Main.java
+
+if [ $? -ne 0 ]; then
+    echo "genmain.rb failed."
+    exit 1
+fi
+
 javac Main.java
