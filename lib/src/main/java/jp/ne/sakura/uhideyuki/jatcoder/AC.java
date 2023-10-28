@@ -1,6 +1,6 @@
 package jp.ne.sakura.uhideyuki.jatcoder;
-import javax.annotation.Nullable;
 import java.util.*;
+
 public class AC {
     public static long gcd(final long a, final long b){
         if (b == 0) return a;
@@ -67,7 +67,6 @@ public class AC {
                 : find(dest, a, m, e);
     }
 
-    @Nullable
     public static String nextPermutation(final String s){
         final ArrayList<Character> list = new ArrayList<>();
         for (int i = 0; i < s.length(); i++) list.add(s.charAt(i));
