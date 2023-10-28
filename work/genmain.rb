@@ -2,10 +2,9 @@
 require 'erb'
 require 'set'
 
-LIBDIR = "../../lib/src/main/java/jp/ne/sakura/uhideyuki/jatcoder"
+filename=ARGV.shift
 
-LIB_CLASSES =
-  Dir.glob("#{LIBDIR}/*.java").map{|s| File.basename(s, ".java")}
+LIBDIR = "../../lib/src/main/java/jp/ne/sakura/uhideyuki/jatcoder"
 
 template = <<'EOS'
 <%= importstr %>
@@ -18,33 +17,26 @@ public class Main {
 
 EOS
 
-st = Set.new()
-
 ## Read the source from stdin
-
+st = Set.new
 instr = ""
 # collect imports from input file
-while s = $stdin.gets do
-  unless /^package.*$/ =~ s
-    instr += s
+File.open(filename) do |f|
+  while s = f.gets do
+    unless /^package.*$/ =~ s
+      instr += s
+    end
+    if /^\s*import/ =~ s
+      st.add(s.strip)
+    end         
   end
-  if /^\s*import/ =~ s
-    st.add(s.strip)
-  end         
 end
 
-## Detect used libraries
-
-libs = []
-LIB_CLASSES.each{|s|
-  re = Regexp.new("#{s}\s*[\.\:\(\<]")
-  if re =~ instr
-    libs.append(s)
-  end
-}
+## libraries to be inserted
+libs = ARGV
 
 # collect imports from lib
-libs.each{|s|
+libs.each do |s|
   File.open("#{LIBDIR}/#{s}.java") do |f|
     while s = f.gets do
       if /^\s*import/ =~ s
@@ -52,8 +44,7 @@ libs.each{|s|
       end         
     end
   end
-}
-
+end
 
 importstr = ""
 st.each{|s| importstr += "#{s}\n"}
