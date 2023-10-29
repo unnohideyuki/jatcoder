@@ -12,8 +12,8 @@ public class ABC310E {
     final String s = sc.next();
 
     long ans = 0;
-    // dp[i][0] : {..., a[i-1], a[i-1]} のうち NAND の結果が 0 になるものの個数
-    // dp[i][1] : {..., a[i-1], a[i-1]} のうち NAND の結果が 1 になるものの個数
+    // dp[i][0] : {..., a[i-2], a[i-1]} のうち NAND の結果が 0 になるものの個数
+    // dp[i][1] : {..., a[i-2], a[i-1]} のうち NAND の結果が 1 になるものの個数
     final long[][] dp = new long[2][2];
 
     for (int i = 0; i < n; i++){
