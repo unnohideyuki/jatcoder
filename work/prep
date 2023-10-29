@@ -1,0 +1,39 @@
+#!/usr/bin/env ruby
+# -*- mode: Ruby -*-
+require 'erb'
+
+clsname = ARGV[0]
+
+if Dir.exist?(clsname)
+  puts("Directory #{clsname} already exist.")
+  exit(1)
+end
+
+Dir.mkdir(clsname)
+
+template = <<'EOS'
+package jp.ne.sakura.uhideyuki.jatcoder;
+import java.util.*;
+
+public class <%= clsname %> {
+  public <%= clsname %>(){
+  }
+
+  public void solve(){
+  }
+}
+EOS
+
+erb = ERB.new(template)
+
+File.open("#{clsname}/#{clsname}.java", "w") do |f|
+  f.write(erb.result)
+end
+
+
+         
+
+
+
+
+

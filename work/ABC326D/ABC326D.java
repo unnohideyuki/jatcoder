@@ -2,73 +2,81 @@ package jp.ne.sakura.uhideyuki.jatcoder;
 import java.util.*;
 
 public class ABC326D {
-    private static int N;
-    private static String R, C;
+  private final Scanner sc;
+  private int n;
+  private String r, c;
 
-    private static String s;
-    private static char[][] data = new char[5][5];
-    private static ArrayList<ArrayList<Integer>> v;
+  private ArrayList<ArrayList<String>> row;
+  private ArrayList<String> grid;
+  private boolean fnd = false;
+  public ABC326D(){
+    sc = new Scanner(System.in);
 
-    public static void solve() {
-        // Input
-        Scanner sc = new Scanner(System.in);
-        N = sc.nextInt();
-        R = sc.next();
-        C = sc.next();
+    row = new ArrayList<>(3);
+    for (int i = 0; i < 3; i++)
+      row.add(new ArrayList<>());
 
-        // Check recursively
-        s = "ABC";
-        for (int i = 3; i < N; i++){
-            s += '.';
+    grid = new ArrayList<>();
+  }
+
+  public void solve(){
+    n = sc.nextInt();
+    r = sc.next();
+    c = sc.next();
+
+    final char[] tmp = new char[n];
+    tmp[0] = 'A';
+    tmp[1] = 'B';
+    tmp[2] = 'C';
+    for (int i = 3; i < n; i++) tmp[i] = '.';
+    Arrays.sort(tmp);
+    String abc = new String(tmp);
+
+    // 各行の文字列候補を一番左にくるのが A, B, C
+    // どれかによって分類して列挙する
+    do {
+      for (int i = 0; i < n; i++){
+        if (abc.charAt(i) != '.'){
+          int idx = abc.charAt(i) - 'A';
+          row.get(idx).add(new String(abc));
+          break;
         }
-        v = new ArrayList<>(N);
-        for (int i = 0; i < N; i++){
-            v.add(new ArrayList<>(N));
-            for (int j = 0; j < N; j++){
-                v.get(i).add(Integer.valueOf(0));
-            }
-        }
-        AC.iota(v.get(0), Integer.valueOf(0), N);
-        checkRec(0);
-        System.out.println("No");
+      }
+    } while ((abc = AC.nextPermutation(abc)) != null);
+
+    dfs(0, (1 << (4*n)) - 1);
+    if (!fnd) { System.out.println("No"); }
+  }
+
+  private void dfs(final int i, final int fl) {
+    if (fnd) { return; }
+    if (i == n) {
+      if (fl == 0) {
+        System.out.println("Yes");
+        for (String s : grid) System.out.println(s);
+        fnd = true;
+      }
+      return;
     }
 
-    private static void checkRec(int i){
-        do {
-            boolean first = true;
-            for (int j = 0; j < N; j++){
-                char c = s.charAt(v.get(i).get(j));
-                if (c != '.'){
-                    if (first && c != R.charAt(i)){
-                        continue;
-                    }
-                    first = false;
-                }
-                data[i][j] = c;
-            }
-            if (i < N - 1){
-                AC.iota(v.get(i+1), Integer.valueOf(0), N);
-                checkRec(i+1);
-            } else {
-                for (int j = 0; j < N; j++){
-                    int k = 0;
-                    while (data[k][j] == '.'){
-                        k++;
-                    }
-                    if (data[k][j] != C.charAt(j)){
-                        return;
-                    }
-                }
-                // solved!
-                for (int y = 0; y < N; y++){
-                    String a = "";
-                    for (int x = 0; x < N; x++){
-                        a += data[y][x];
-                    }
-                    System.out.println(a);
-                }
-                System.exit(0);
-            }
-        } while (AC.nextPermutation(v.get(i)));
+    for (String ns : row.get(r.charAt(i) - 'A')) {
+      grid.add(ns); // pushBack
+
+      int ufl = fl;
+      boolean und = true;
+      for (int j = 0; j < n; j++) {
+        if (ns.charAt(j) == '.') { continue; }
+        final int kind = (ns.charAt(j) - 'A');
+        if ((fl & (1 << (4 * j + kind))) == 0) { und = false; break; }
+        ufl ^= (1 << (4 * j + kind));
+        if ((fl & (1 << (4 * j + 3))) != 0) {
+          if (ns.charAt(j) != c.charAt(j)) { und = false; break; }
+          ufl ^= (1 << (4 * j + 3));
+        }
+      }
+
+      if (und) { dfs(i+1, ufl); }
+      grid.remove(grid.size() - 1); // popBack
     }
+  }
 }
