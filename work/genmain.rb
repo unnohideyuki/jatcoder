@@ -55,7 +55,7 @@ re1 = /^\s*public\s+class\s+(\w+)/
 re1 =~ instr
 clsname = $1
 puts "// Main.java is converted from #{clsname}.java by genmain.rb:"
-puts "//   https://github.com/unnohideyuki/jatcoder/blob/5cf3ba7375516e84c3663c25e8d9d09b212b2ab5/work/genmain.rb"
+puts "//   https://github.com/unnohideyuki/jatcoder/blob/main/work/genmain.rb"
 erb = ERB.new(template)
 erb.run
 
