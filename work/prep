@@ -2,7 +2,7 @@
 # -*- mode: Ruby -*-
 require 'erb'
 
-clsname = ARGV[0]
+clsname = ARGV[0].upcase
 
 if Dir.exist?(clsname)
   puts("Directory #{clsname} already exist.")
