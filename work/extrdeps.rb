@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require 'set'
 
-CODE_PATH = "../../code/src/main/java"
+CODE_PATH = "../../code/src/main/java/jp/ne/sakura/uhideyuki/jatcoder"
 CLASS_PATH = "../../lib/src/main/java"
 JATCODER_LIBS_DIR = "../../lib/src/main/java/jp/ne/sakura/uhideyuki/jatcoder"
 

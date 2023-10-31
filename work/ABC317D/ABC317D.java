@@ -1,1 +1,1 @@
-../../code/src/main/java/ABC317D.java
+../../code/src/main/java/jp/ne/sakura/uhideyuki/jatcoder/ABC317D.java

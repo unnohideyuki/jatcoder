@@ -1,1 +1,1 @@
-../../code/src/main/java/MathAndAlgoO.java
+../../code/src/main/java/jp/ne/sakura/uhideyuki/jatcoder/MathAndAlgoO.java
