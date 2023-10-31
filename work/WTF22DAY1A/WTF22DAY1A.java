@@ -1,1 +1,1 @@
-../../code/src/main/java/WTF22DAY1A.java
+../../code/src/main/java/jp/ne/sakura/uhideyuki/jatcoder/WTF22DAY1A.java

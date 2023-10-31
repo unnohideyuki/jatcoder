@@ -2,7 +2,7 @@
 # -*- mode: Ruby -*-
 require 'erb'
 
-CODE_PATH = "../code/src/main/java"
+CODE_PATH = "../code/src/main/java/jp/ne/sakura/uhideyuki/jatcoder"
 
 clsname = ARGV[0].upcase
 

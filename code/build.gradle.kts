@@ -16,6 +16,7 @@ repositories {
 }
 
 dependencies {
+    implementation(project(mapOf("path" to ":lib")))
     // Use JUnit Jupiter for testing.
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.3")
 

@@ -1,1 +1,1 @@
-../../code/src/main/java/ARC125B.java
+../../code/src/main/java/jp/ne/sakura/uhideyuki/jatcoder/ARC125B.java

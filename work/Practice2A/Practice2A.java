@@ -1,1 +1,1 @@
-../../code/src/main/java/Practice2A.java
+../../code/src/main/java/jp/ne/sakura/uhideyuki/jatcoder/Practice2A.java
