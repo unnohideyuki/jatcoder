@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 require 'set'
 
+CODE_PATH = "../../code/src/main/java"
 CLASS_PATH = "../../lib/src/main/java"
 JATCODER_LIBS_DIR = "../../lib/src/main/java/jp/ne/sakura/uhideyuki/jatcoder"
 
@@ -17,7 +18,7 @@ def command(str)
 end
 
 def jdeps(class_name)
-  source = "#{$source_class}.class"
+  source = "#{CODE_PATH}/#{$source_class}.class"
   if class_name != $source_class 
     source = "#{JATCODER_LIBS_DIR}/#{class_name}.class"
   end
