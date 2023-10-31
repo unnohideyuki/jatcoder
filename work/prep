@@ -2,6 +2,8 @@
 # -*- mode: Ruby -*-
 require 'erb'
 
+CODE_PATH = "../code/src/main/java"
+
 clsname = ARGV[0].upcase
 
 if Dir.exist?(clsname)
@@ -26,9 +28,12 @@ EOS
 
 erb = ERB.new(template)
 
-File.open("#{clsname}/#{clsname}.java", "w") do |f|
+File.open("#{CODE_PATH}/#{clsname}.java", "w") do |f|
   f.write(erb.result)
 end
+
+system("cd #{clsname}; ln -s ../#{CODE_PATH}/#{clsname}.java .")
+
 
 
          
