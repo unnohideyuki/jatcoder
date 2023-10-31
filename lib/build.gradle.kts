@@ -8,6 +8,11 @@
 plugins {
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
+    `checkstyle`
+}
+
+checkstyle {
+    configFile = file("config/checkstyle/checkstyle.xml")
 }
 
 repositories {
