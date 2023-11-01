@@ -27,11 +27,11 @@ public class FenwickTree<T> {
     public static FenwickTree<Integer> integerTree(final int size){
         final Integer[] data = new Integer[size];
         for (int i = 0; i < size; i++) data[i] = Integer.valueOf(0);
-        BiFunction<Integer, Integer, Integer> fadd =
+        final BiFunction<Integer, Integer, Integer> fadd =
                 (a, b) -> {
                     return a + b;
                 };
-        BiFunction<Integer, Integer, Integer> fsub =
+        final BiFunction<Integer, Integer, Integer> fsub =
                 (a, b) -> {
                     return a - b;
                 };
@@ -42,11 +42,11 @@ public class FenwickTree<T> {
     public static FenwickTree<Long> longTree(final int size){
         final Long[] data = new Long[size];
         for (int i = 0; i < size; i++) data[i] = Long.valueOf(0L);
-        BiFunction<Long, Long, Long> fadd =
+        final BiFunction<Long, Long, Long> fadd =
                 (a, b) -> {
                     return a + b;
                 };
-        BiFunction<Long, Long, Long> fsub =
+        final BiFunction<Long, Long, Long> fsub =
                 (a, b) -> {
                     return a - b;
                 };
@@ -57,11 +57,11 @@ public class FenwickTree<T> {
     public static FenwickTree<Modint> modintTree(final int size, final Modint.Builder modint){
         final Modint[] data = new Modint[size];
         for (int i = 0; i < size; i++) data[i] = modint.build(0);
-        BiFunction<Modint, Modint, Modint> fadd =
+        final BiFunction<Modint, Modint, Modint> fadd =
                 (a, b) -> {
                     return a.add(b);
                 };
-        BiFunction<Modint, Modint, Modint> fsub =
+        final BiFunction<Modint, Modint, Modint> fsub =
                 (a, b) -> {
                     return a.sub(b);
                 };

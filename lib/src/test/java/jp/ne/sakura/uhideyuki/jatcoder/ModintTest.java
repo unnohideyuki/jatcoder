@@ -129,8 +129,8 @@ class ModintTest {
     void modintPow(){
         final int mod = 13;
         long x = 1;
-        int a = 9;
-        int p = 100;
+        final int a = 9;
+        final int p = 100;
         for (int i = 0; i < p; i++){
             x *= a;
             x %= mod;
@@ -143,9 +143,9 @@ class ModintTest {
     void modintCompare() {
         final Modint.Builder modint = new Modint.Builder(998244353);
         for (long x = 0L; x < 10L; x++){
-            Modint a = modint.build((int) x);
+            final Modint a = modint.build((int) x);
             for (long y = 0L; y < 10L; y++){
-                Modint b = modint.build((int) y);
+                final Modint b = modint.build((int) y);
                 assertEquals(Long.valueOf(x).equals(y), a.equals(b));
                 assertEquals(Long.valueOf(x).compareTo(y), a.compareTo(b));
             }

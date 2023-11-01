@@ -1,10 +1,21 @@
 package jp.ne.sakura.uhideyuki.jatcoder;
 public class Pair<L extends Comparable<L>, R extends Comparable<R>> implements Comparable<Pair<L, R>> {
-    public L first;
-    public R second;
+    private L first;
+    private R second;
     public Pair(final L a, final R b){
         first = a;
         second = b;
+    }
+
+    public L getFirst() { return first; }
+    public R getSecond() { return second; }
+
+    public void setFirst(L first) {
+        this.first = first;
+    }
+
+    public void setSecond(R second) {
+        this.second = second;
     }
 
     @Override

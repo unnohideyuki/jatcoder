@@ -9,11 +9,12 @@
 Pair<L, R> pair = new Pair<L, R>(L a, R b)
 ```
 
-## メンバ変数
+## メンバ変数へのアクセサ
 ###  first
 
 ```
-L pair.first
+L pair.getFirst()
+void pair.setFirst(L first)
 ```
 
 １つめの要素
@@ -21,7 +22,8 @@ L pair.first
 ### second
 
 ```
-R pair.second
+R pair.getSecond()
+void pair.setSecond(R second)
 ```
 
 ２つめの要素

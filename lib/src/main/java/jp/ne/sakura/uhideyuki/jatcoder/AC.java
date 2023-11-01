@@ -47,10 +47,10 @@ public class AC {
 
     // nextPermutation is based on https://tomerun.hatenadiary.org/entry/20081203/1228321480
     public static <T extends Comparable<? super T>> boolean nextPermutation(final List<T> l) {
-        int size = l.size();
+        final int size = l.size();
         for (int i = size - 1; i > 0; --i) {
             if (l.get(i - 1).compareTo(l.get(i)) < 0) {
-                int swapIndex = find(l.get(i - 1), l, i, size - 1);
+                final int swapIndex = find(l.get(i - 1), l, i, size - 1);
                 Collections.swap(l, i - 1, swapIndex);
                 Collections.sort(l.subList(i, size));
                 return true;
@@ -61,7 +61,7 @@ public class AC {
 
     private static <T extends Comparable<? super T>> int find(T dest, List<T> a, int s, int e) {
         if (s == e) return s;
-        int m = (s + e + 1) / 2;
+        final int m = (s + e + 1) / 2;
         return a.get(m).compareTo(dest) <= 0
                 ? find(dest, a, s, m - 1)
                 : find(dest, a, m, e);
