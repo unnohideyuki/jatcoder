@@ -31,9 +31,9 @@ public class ABC325E {
 
         while (que.size() > 0){
             final var p = que.poll();
-            final long currD = p.first;
-            final int train = p.second.first;
-            final int i = p.second.second;
+            final long currD = p.getFirst();
+            final int train = p.getSecond().getFirst();
+            final int i = p.getSecond().getSecond();
 
             if (dist[train][i] < currD) continue;
 

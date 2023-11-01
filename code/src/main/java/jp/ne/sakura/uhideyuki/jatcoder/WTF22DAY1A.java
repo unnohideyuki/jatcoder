@@ -33,8 +33,8 @@ public class WTF22DAY1A {
 
     if (a >= b) {
       for (final Pair<Integer, Integer> p : list) {
-        final int ct = p.first;
-        final int i = p.second;
+        final int ct = p.getFirst();
+        final int i = p.getSecond();
         final int attack_ct = Math.min(ct, Math.min(a, b + 1));
         final int defence_ct = Math.min(ct, Math.min(b, attack_ct));
         a -= attack_ct;

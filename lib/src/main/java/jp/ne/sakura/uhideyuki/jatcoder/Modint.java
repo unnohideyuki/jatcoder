@@ -131,7 +131,7 @@ public class Modint implements Comparable<Modint> {
         long m0 = 0, m1 = 1;
 
         while (t != 0){
-            long u = s / t;
+            final long u = s / t;
             s -= t * u;
             m0 -= m1 * u;
 
