@@ -1,0 +1,1 @@
+../../code/src/main/java/jp/ne/sakura/uhideyuki/jatcoder/PRACTICE2J.java
