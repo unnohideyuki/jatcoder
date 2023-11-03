@@ -96,6 +96,15 @@ S seg.prod(int l, int r)
 
 `op(a[l], ..., a[r-1])` を計算します。l = r の時は `e` を返します。
 
+### 制約
+
+$0 \le l \le r \le n$
+
+### 計算量
+
+$O(\log n)$
+
+
 ## allProd
 
 ```console
