@@ -71,3 +71,80 @@ $0 \le p < n$
 ### 計算量
 
 $O(\log n)$
+
+## get
+
+```console
+S seg.get(int p)
+```
+
+`a[p]` を返します。
+
+### 制約
+
+$0 \le p < n$
+
+### 計算量
+
+$O(1)$
+
+## prod
+
+```console
+S seg.prod(int l, int r)
+```
+
+`op(a[l], ..., a[r-1])` を計算します。l = r の時は `e` を返します。
+
+## allProd
+
+```console
+S seg.allProd()
+```
+
+`op(a[l], ..., a[n-1])` を計算します。n = 0 の時は `e` を返します。
+
+### 計算量
+
+$O(1)$
+
+## maxRight
+
+```console
+int seg.maxRight(int l, Function<S, Boolean> f)
+```
+
+`f(op(a[l], a[l+1], ..., a[r-1])) == true` となる最大の r を求めます。
+
+### 制約
+
+- `f` に副作用がない
+- `f(e) == true`
+- $0 \le l \le n$
+
+### 計算量
+
+$O(\log n)$
+
+## minLeft
+
+```console
+int seg.minLeft(int r, Function<S, Boolean> f)
+```
+
+`f(op(a[l], a[l+1], ..., a[r-1])) == true` となる最小の l を求めます。
+
+### 制約
+
+- `f` に副作用がない
+- `f(e) == true`
+- $0 \le r \le n$
+
+### 計算量
+
+$O(\log n)$
+
+## 使用例
+
+AC Code for [AtCoder Library Practice Contest J - Segment Tree](https://atcoder.jp/contests/practice2/tasks/practice2_j):
+[Practice2J](../code/src/main/java/jp/ne/sakura/uhideyuki/jatcoder/PRACTICE2J.java)
