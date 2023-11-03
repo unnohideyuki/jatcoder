@@ -106,4 +106,4 @@ ArrayList<ArrayList<Integer>> uf.groups()
 ### 使用例
 
 AC Code for [AtCoder Library Practice Contest A - Disjoint Set Union](https://atcoder.jp/contests/practice2/tasks/practice2_a): 
-[Practice2A.java](../work/Practice2A/Practice2A.java)
+[Practice2A.java](../code/src/main/java/jp/ne/sakura/uhideyuki/jatcoder/Practice2A.java)
