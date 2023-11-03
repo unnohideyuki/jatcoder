@@ -79,4 +79,4 @@ $O(\log n)$
 
 AC Code for
 [AC Library Practice Contest B - Fenwick Tree](https://atcoder.jp/contests/practice2/tasks/practice2_b):
-[Practice2B](../work/Practice2B/Practice2B.java)
+[Practice2B](../code/src/main/java/jp/ne/sakura/uhideyuki/jatcoder/Practice2B.java)
