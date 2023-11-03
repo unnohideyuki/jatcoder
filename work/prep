@@ -4,7 +4,7 @@ require 'erb'
 
 CODE_PATH = "../code/src/main/java/jp/ne/sakura/uhideyuki/jatcoder"
 
-clsname = ARGV[0].upcase
+clsname = ARGV[0].capitalize
 
 if Dir.exist?(clsname)
   puts("Directory #{clsname} already exist.")
