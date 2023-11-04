@@ -14,6 +14,8 @@ public class Antbook_p327 {
     final String s = sc.next();
 
     // 前処理
+    // next[i][j] : s の先頭 i 文字まで一致している文字列の末尾に agct[j] を加えたら
+    //              何文字まで一致するか
     final String agct = "AGCT";
     final int[][] next = new int[k][4]; // 一文字加えた際に移動する先の状態
     for (int i = 0; i < k; i++) {
@@ -29,6 +31,8 @@ public class Antbook_p327 {
     }
 
     // DP
+    // dp[i][j] :  現在の文字列の長さが i 文字であって、
+    //             その suffix が s の先頭 j 文字と一致している状態の総数
     final int MOD = 10009;
     final int[][] dp = new int[n+1][k];
     dp[0][0] = 1;
