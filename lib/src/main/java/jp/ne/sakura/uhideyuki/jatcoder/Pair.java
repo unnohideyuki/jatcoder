@@ -7,6 +7,11 @@ public class Pair<L extends Comparable<L>, R extends Comparable<R>> implements C
         second = b;
     }
 
+    public Pair(final Pair<L, R> p) {
+        first = p.getFirst();
+        second = p.getSecond();
+    }
+
     public L getFirst() { return first; }
     public R getSecond() { return second; }
 
