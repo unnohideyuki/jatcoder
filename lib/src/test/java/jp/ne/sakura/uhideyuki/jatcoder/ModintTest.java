@@ -5,11 +5,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ModintTest {
     @Test
-    void modintSetGetValue() {
+    void modintGetValue() {
         final int mod = 13;
-        final Modint x = new Modint.Builder(mod).build();
-        assertEquals(0, x.getValue());
-        x.setValue(10);
+        final Modint x = new Modint.Builder(mod).build(10);
         assertEquals(10, x.getValue());
     }
 

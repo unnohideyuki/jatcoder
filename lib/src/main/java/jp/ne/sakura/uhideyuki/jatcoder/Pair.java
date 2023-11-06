@@ -1,27 +1,14 @@
 package jp.ne.sakura.uhideyuki.jatcoder;
-public class Pair<L extends Comparable<L>, R extends Comparable<R>> implements Comparable<Pair<L, R>> {
-    private L first;
-    private R second;
+public final class Pair<L extends Comparable<L>, R extends Comparable<R>> implements Comparable<Pair<L, R>> {
+    private final L first;
+    private final R second;
     public Pair(final L a, final R b){
         first = a;
         second = b;
     }
 
-    public Pair(final Pair<L, R> p) {
-        first = p.getFirst();
-        second = p.getSecond();
-    }
-
     public L getFirst() { return first; }
     public R getSecond() { return second; }
-
-    public void setFirst(L first) {
-        this.first = first;
-    }
-
-    public void setSecond(R second) {
-        this.second = second;
-    }
 
     @Override
     @SuppressWarnings("unchecked")

@@ -1,19 +1,17 @@
 package jp.ne.sakura.uhideyuki.jatcoder;
 
-public class Modint implements Comparable<Modint> {
-    final private long modintBase;
-    final private boolean prime;
-    private long value = 0;
+public final class Modint implements Comparable<Modint> {
+    private final long modintBase;
+    private final boolean prime;
+    private final long value;
 
     @Override
-    @SuppressWarnings("unchecked")
     public boolean equals(final Object obj){
         if (this == obj)
             return true;
         if (obj == null)
             return false;
-        if (obj instanceof Modint) {
-            final Modint m = (Modint) obj;
+        if (obj instanceof Modint m) {
             return value == m.getValue();
         }
         return super.equals(obj);
@@ -21,7 +19,7 @@ public class Modint implements Comparable<Modint> {
 
     @Override
     public int compareTo(final Modint m){
-        return Long.valueOf(value).compareTo(Long.valueOf(m.getValue()));
+        return Long.compare(value, m.getValue());
     }
 
     @Override
@@ -44,7 +42,7 @@ public class Modint implements Comparable<Modint> {
         }
 
         public Modint build(){
-            return new Modint(this);
+            return new Modint(this, 0);
         }
 
         public Modint build(final int v){
@@ -52,30 +50,16 @@ public class Modint implements Comparable<Modint> {
         }
     }
 
-    private Modint(final Builder builder){
-        this.modintBase = builder.modintBase;
-        this.prime = builder.prime;
-    }
-
     private Modint(final Builder builder, final int v){
-        this(builder);
-        setValue(v);
+        modintBase = builder.modintBase;
+        prime = builder.prime;
+        value = v % mod();
     }
 
-    private Modint(final Modint x){
-        this.modintBase = x.modintBase;
-        this.prime = x.prime;
-        this.value = x.value;
-    }
-
-    public Modint setValue(final int v){
-        value = (long) v % modintBase;
-        return this;
-    }
-
-    private Modint setRaw(final long v){
-        value = v;
-        return this;
+    private Modint(final Modint x, final long newRawValue){
+        modintBase = x.modintBase;
+        prime = x.prime;
+        value = newRawValue;
     }
 
     public int getValue(){
@@ -89,27 +73,26 @@ public class Modint implements Comparable<Modint> {
     public Modint add(final Modint x){
         final long m = modintBase;
         assert m == x.mod();
-        return new Modint(this).setRaw((this.getValue() + x.getValue()) % m);
+        return new Modint(this, ((this.getValue() + x.getValue()) % m));
     }
 
     public Modint sub(final Modint x){
         final long m = modintBase;
         assert m == x.mod();
-        return new Modint(this)
-                .setRaw((((getValue() - x.getValue()) % m) + m) % m);
+        return new Modint(this, ((((getValue() - x.getValue()) % m) + m) % m));
     }
 
     public Modint mul(final Modint x){
         final long m = modintBase;
         assert m == x.mod();
-        return new Modint(this).setRaw(((long) getValue() * x.getValue()) % m);
+        return new Modint(this, (((long) getValue() * x.getValue()) % m));
     }
 
     public Modint div(final Modint x){
         final long m = modintBase;
         assert m == x.mod();
         assert prime == x.prime;
-        return new Modint(this).setRaw(((long) getValue() * x.inv().getValue()) % m);
+        return new Modint(this, (((long) getValue() * x.inv().getValue()) % m));
     }
     public Modint inv(){
         final long m = modintBase;
@@ -119,7 +102,7 @@ public class Modint implements Comparable<Modint> {
         } else {
             final long[] eg = invGcd(value, m);
             assert eg[0] == 1;
-            return new Modint(this).setRaw(eg[1]);
+            return new Modint(this, eg[1]);
         }
     }
 
@@ -155,6 +138,6 @@ public class Modint implements Comparable<Modint> {
             x = x * x % m;
             n >>= 1;
         }
-        return new Modint(this).setRaw(a);
+        return new Modint(this, a);
     }
 }

@@ -51,7 +51,7 @@ importstr = ""
 st.each{|s| importstr += "#{s}\n"}
 
 ## Print Main
-re1 = /^\s*public\s+class\s+(\w+)/
+re1 = /^\s*public\s+(?:final)?\s*class\s+(\w+)/
 re1 =~ instr
 clsname = $1
 puts "// Main.java is converted from #{clsname}.java by genmain.rb:"
