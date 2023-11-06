@@ -6,15 +6,17 @@
 
 ## コンストラクタ
 ```
-Pair<L, R> pair = new Pair<L, R>(L a, R b)
+Pair<L, R> pair = new Pair<>(L a, R b)
 ```
 
 ## メンバ変数へのアクセサ
+
+いずれも getter のみで、setter はありません。（Pair は immutable です）
+
 ###  first
 
 ```
 L pair.getFirst()
-void pair.setFirst(L first)
 ```
 
 １つめの要素
@@ -23,7 +25,6 @@ void pair.setFirst(L first)
 
 ```
 R pair.getSecond()
-void pair.setSecond(R second)
 ```
 
 ２つめの要素

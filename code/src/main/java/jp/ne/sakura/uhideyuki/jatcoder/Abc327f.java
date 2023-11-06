@@ -40,10 +40,10 @@ public class Abc327f {
     }
     for (int i = 0; i < L; i++) {
       for (var x : g.get(i)) {
-        var tmp = new Pair<>(seg.get(x.getFirst()));
-        tmp.setFirst(tmp.getFirst() + x.getSecond());
-        tmp.setSecond(Math.max(0, tmp.getFirst()));
-        seg.set(x.getFirst(), tmp);
+        var tmp = seg.get(x.getFirst());
+        final Integer fst = tmp.getFirst() + x.getSecond();
+        final Integer snd = Math.max(0, fst);
+        seg.set(x.getFirst(), new Pair<>(fst, snd));
       }
       ans = Math.max(ans, seg.allProd().getSecond());
     }
