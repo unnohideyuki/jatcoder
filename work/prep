@@ -16,12 +16,19 @@ Dir.mkdir(clsname)
 template = <<'EOS'
 package jp.ne.sakura.uhideyuki.jatcoder;
 import java.util.*;
+import java.io.PrintWriter;
 
 public class <%= clsname %> {
+  private final FastScanner sc;
+  private final PrintWriter out;
   public <%= clsname %>(){
+    sc = new FastScanner();
+    out = new PrintWriter(System.out);
   }
 
   public void solve(){
+
+    out.flush();
   }
 }
 EOS
