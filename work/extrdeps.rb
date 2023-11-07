@@ -18,7 +18,14 @@ def command(str)
   end
 end
 
+$visited = Set.new
+
 def jdeps(class_name)
+  if $visited.include?(class_name)
+    return
+  end
+  $visited.add(class_name)
+  
   source =
     "#{CODE_BUILD_PATH}/jp/ne/sakura/uhideyuki/jatcoder/#{$source_class}.class"
   if class_name != $source_class 
