@@ -7,6 +7,10 @@ public class WTF22DAY1A {
     sc = new Scanner(System.in);
   }
 
+  public void flush() {
+    // Dummy
+  }
+
   public void solve(){
     final int n = sc.nextInt();
     final int m = sc.nextInt();

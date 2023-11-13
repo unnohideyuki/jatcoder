@@ -10,6 +10,7 @@ public class Practice2k {
     sc = new FastScanner();
     out = new PrintWriter(System.out);
   }
+  public void flush() {}
 
   private final long MOD = 998244353L;
 

@@ -6,7 +6,7 @@ public class ABC310E {
     public ABC310E(){
         sc = new Scanner(System.in);
     }
-
+    public void flush() {}
     public void solve(){
         final int n = sc.nextInt();
         final String s = sc.next();

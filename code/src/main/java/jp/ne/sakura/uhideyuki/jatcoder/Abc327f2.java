@@ -10,6 +10,7 @@ public class Abc327f2 {
     sc = new FastScanner();
     out = new PrintWriter(System.out);
   }
+  public void flush() {}
 
   private final int TMax = 200000;
   private final int XMax = 200000;

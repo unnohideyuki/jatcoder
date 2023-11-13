@@ -9,6 +9,7 @@ public class Abc328c {
     sc = new FastScanner();
     out = new PrintWriter(System.out);
   }
+  public void flush() {}
 
   public void solve(){
     int n = sc.nextInt();

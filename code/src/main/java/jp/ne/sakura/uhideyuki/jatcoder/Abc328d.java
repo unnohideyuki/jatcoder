@@ -11,6 +11,7 @@ public class Abc328d {
     sc = new FastScanner();
     out = new PrintWriter(System.out);
   }
+  public void flush() {}
 
   static class Node {
     Node prev;
