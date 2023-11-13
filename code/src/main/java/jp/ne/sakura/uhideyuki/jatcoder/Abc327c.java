@@ -7,6 +7,7 @@ public class Abc327c {
   public Abc327c(){
     sc = new Scanner(System.in);
   }
+  public void flush() {}
 
   public void solve(){
     final int[][] a = new int[9][9];

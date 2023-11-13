@@ -11,6 +11,7 @@ public class Edpq {
     sc = new FastScanner();
     out = new PrintWriter(System.out);
   }
+  public void flush() {}
 
   public void solve(){
     final int n = sc.nextInt();

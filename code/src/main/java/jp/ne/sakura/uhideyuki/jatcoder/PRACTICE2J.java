@@ -8,6 +8,7 @@ public class PRACTICE2J {
   public PRACTICE2J(){
     sc = new Scanner(System.in);
   }
+  public void flush() {}
 
   public void solve(){
     // Input

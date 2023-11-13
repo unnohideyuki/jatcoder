@@ -6,6 +6,7 @@ public class Abc327b {
   public Abc327b(){
     sc = new Scanner(System.in);
   }
+  public void flush() {}
 
   public void solve(){
     final long b = sc.nextLong();

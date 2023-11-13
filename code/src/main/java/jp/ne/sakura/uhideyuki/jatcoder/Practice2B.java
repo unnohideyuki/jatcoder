@@ -1,6 +1,7 @@
 package jp.ne.sakura.uhideyuki.jatcoder;
 import java.util.*;
 public class Practice2B {
+	public void flush() {}
     public void solve(){
 		final Scanner sc = new Scanner(System.in);
 		final int N = sc.nextInt();

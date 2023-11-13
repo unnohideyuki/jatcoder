@@ -8,6 +8,7 @@ public class Abc327e {
   public Abc327e(){
     sc = new Scanner(System.in);
   }
+  public void flush() {}
 
   private double solvedp(){
     final double[] den = new double[n+1];

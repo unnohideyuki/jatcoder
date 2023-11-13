@@ -6,6 +6,7 @@ public class ARC125B {
   public ARC125B(){
     sc = new Scanner(System.in);
   }
+  public void flush() {}
 
   public void solve(){
     final long n = sc.nextLong();

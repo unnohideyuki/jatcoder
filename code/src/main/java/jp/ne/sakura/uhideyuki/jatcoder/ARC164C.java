@@ -6,6 +6,7 @@ public class ARC164C {
   public ARC164C(){
     sc = new Scanner(System.in);
   }
+  public void flush() {}
 
   public void solve(){
     final int n = sc.nextInt();

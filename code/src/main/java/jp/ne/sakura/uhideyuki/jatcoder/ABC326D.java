@@ -18,6 +18,7 @@ public class ABC326D {
 
     grid = new ArrayList<>();
   }
+  public void flush() {}
 
   public void solve(){
     n = sc.nextInt();

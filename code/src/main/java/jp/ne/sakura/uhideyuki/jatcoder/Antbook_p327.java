@@ -6,6 +6,7 @@ public class Antbook_p327 {
   public Antbook_p327(){
     sc = new Scanner(System.in);
   }
+  public void flush() {}
 
   public void solve(){
     // 入力

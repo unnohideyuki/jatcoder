@@ -6,6 +6,7 @@ public class Abc327d {
   public Abc327d(){
     sc = new Scanner(System.in);
   }
+  public void flush() {}
 
   private int n;
   private int m;
