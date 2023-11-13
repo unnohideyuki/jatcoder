@@ -13,6 +13,7 @@ public class Main {
     public static void main(final String[] args){
       final <%= clsname %> <%= clsname.downcase %> = new <%= clsname %>();
       <%= clsname.downcase %>.solve();
+      <%= clsname.downcase %>.flush();
     }
 }
 
