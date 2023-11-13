@@ -26,9 +26,11 @@ public class <%= clsname %> {
     out = new PrintWriter(System.out);
   }
 
-  public void solve(){
-
+  public void flush() {
     out.flush();
+  }
+
+  public void solve() {
   }
 }
 EOS
