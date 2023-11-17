@@ -1,5 +1,5 @@
 package jp.ne.sakura.uhideyuki.jatcoder;
-import java.util.*;
+import java.util.Arrays;
 import java.util.function.*;
 
 public class FenwickTree<T> {
@@ -26,47 +26,35 @@ public class FenwickTree<T> {
 
     public static FenwickTree<Integer> integerTree(final int size){
         final Integer[] data = new Integer[size];
-        for (int i = 0; i < size; i++) data[i] = Integer.valueOf(0);
+        Arrays.fill(data, 0);
         final BiFunction<Integer, Integer, Integer> fadd =
-                (a, b) -> {
-                    return a + b;
-                };
+                Integer::sum;
         final BiFunction<Integer, Integer, Integer> fsub =
-                (a, b) -> {
-                    return a - b;
-                };
-        final Integer zero = Integer.valueOf(0);
-        return new FenwickTree<Integer>(size, data, fadd, fsub, zero);
+                (a, b) -> a - b;
+        final Integer zero = 0;
+        return new FenwickTree<>(size, data, fadd, fsub, zero);
     }
 
     public static FenwickTree<Long> longTree(final int size){
         final Long[] data = new Long[size];
-        for (int i = 0; i < size; i++) data[i] = Long.valueOf(0L);
+        Arrays.fill(data, 0L);
         final BiFunction<Long, Long, Long> fadd =
-                (a, b) -> {
-                    return a + b;
-                };
+                Long::sum;
         final BiFunction<Long, Long, Long> fsub =
-                (a, b) -> {
-                    return a - b;
-                };
-        final Long zero = Long.valueOf(0L);
-        return new FenwickTree<Long>(size, data, fadd, fsub, zero);
+                (a, b) -> a - b;
+        final Long zero = 0L;
+        return new FenwickTree<>(size, data, fadd, fsub, zero);
     }
 
     public static FenwickTree<Modint> modintTree(final int size, final Modint.Builder modint){
         final Modint[] data = new Modint[size];
-        for (int i = 0; i < size; i++) data[i] = modint.build(0);
+        for (int i = 0; i < size; i++) data[i] = modint.setValue(0).build();
         final BiFunction<Modint, Modint, Modint> fadd =
-                (a, b) -> {
-                    return a.add(b);
-                };
+                Modint::add;
         final BiFunction<Modint, Modint, Modint> fsub =
-                (a, b) -> {
-                    return a.sub(b);
-                };
-        final Modint zero = modint.build(0);
-        return new FenwickTree<Modint>(size, data, fadd, fsub, zero);
+                Modint::sub;
+        final Modint zero = modint.setValue(0).build();
+        return new FenwickTree<>(size, data, fadd, fsub, zero);
     }
 
     private T sum(int r) {
@@ -90,6 +78,6 @@ public class FenwickTree<T> {
 
     public T sum(int l, int r) {
         assert (0 <= l && l <= r && r <= size);
-        return (T) fsub.apply(sum(r), sum(l));
+        return fsub.apply(sum(r), sum(l));
     }
 }
