@@ -10,7 +10,7 @@ public class ARC125B {
 
   public void solve(){
     final long n = sc.nextLong();
-    final Modint.Builder modint = new Modint.Builder(998244353);
-    final Modint ans = modint.build(0);
+    final Modint.Builder modint = new Modint.Builder().setMod(998244353);
+    final Modint ans = modint.setValue(0).build();
   }
 }
