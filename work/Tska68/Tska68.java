@@ -1,0 +1,1 @@
+../../code/src/main/java/jp/ne/sakura/uhideyuki/jatcoder/Tska68.java
