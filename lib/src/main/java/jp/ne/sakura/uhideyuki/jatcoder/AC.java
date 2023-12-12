@@ -27,10 +27,21 @@ public class AC {
     }
 
     public static void iota(final List<Integer> list, Integer value, final int size){
-        for (int i = 0; i < size; i++) list.add(i, value++);
-    }
+        if (list.size() == size) {
+            for (int i = 0; i < size; i++) list.set(i, value++);
+        } else {
+            list.clear();
+            for (int i = 0; i < size; i++) list.add(value++);
+        }
+  }
+
     public static void iota(final List<Long> list, Long value, final int size){
-        for (int i = 0; i < size; i++) list.add(value++);
+        if (list.size() == size) {
+            for (int i = 0; i < size; i++) list.set(i, value++);
+        } else {
+            list.clear();
+            for (int i = 0; i < size; i++) list.add(value++);
+        }
     }
     public static void iota(final int[] arr, int value){
         for (int i = 0; i < arr.length ; i++) arr[i] = value++;
